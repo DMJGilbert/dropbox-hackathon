@@ -1,0 +1,13 @@
+{
+  "name": "Devbox",
+  "version": "0.0.1",
+  "private": true,
+
+  "scripts": {
+    "start": "node sever/server.js"
+  },
+
+  "dependencies": {
+    "express.io": "*"
+  }
+}
