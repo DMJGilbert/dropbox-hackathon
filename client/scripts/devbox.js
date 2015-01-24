@@ -144,14 +144,42 @@ function parentFolder(parentPath) {
 	socket.emit("files:list", {path: parentPath});
 }
 
-var webrtc = new SimpleWebRTC({
-	// the id/element dom element that will hold "our" video
-	localVideoEl: 'localVideo',
-	// the id/element dom element that will hold remote videos
-	remoteVideosEl: 'remotesVideos',
-	// immediately ask for camera access
-	autoRequestMedia: true
+var peerConnectionConfig;
+ 
+$.ajax({
+    type: "POST",
+    dataType: "json",
+    url: "https://api.xirsys.com/getIceServers",
+    data: {
+        ident: "< Your username (not your email) >",
+        secret: "< Your secret API token >",
+        domain: "< www.yourdomain.com >",
+        application: "default",
+        room: room,
+        secure: 1
+    },
+    success: function (data, status) {
+        // data.d is where the iceServers object lives
+        peerConnectionConfig = data.d;
+        console.log(peerConnectionConfig);
+    },
+    async: false
 });
+
+var webrtc = new SimpleWebRTC({
+    // The DOM element that will hold "our" video
+    localVideoEl: 'localVideo',
+    // The DOM element that will hold remote videos
+    remoteVideosEl: '',
+    // Immediately ask for camera access
+    autoRequestMedia: true,
+    debug: false,
+    detectSpeakingEvents: true,
+    autoAdjustMic: false,
+    // Add the new peerConnectionConfig object
+    peerConnectionConfig: peerConnectionConfig
+});
+
 
 // we have to wait until it's ready
 webrtc.on('readyToCall', function () {
