@@ -11,6 +11,7 @@ exports.list = function (req) {
 		for (var i = 0; i < projects.length; i++) {
 			var project = projects[i];
 			if (project.users.indexOf(req.session.user.id) != -1) {
+				retProjects.id = i;
 				retProjects.push(project);
 			}
 		}
@@ -71,7 +72,7 @@ exports.files = function (req) {
 				token: project.token
 			});
 
-			client.readdir(project.path, {}, function (err, arr, stat, statarr) {
+			client.readdir(req.data.path? req.data.path : project.path, {}, function (err, arr, stat, statarr) {
 				req.io.emit('projects:files', {
 					err: err,
 					arr: arr,
