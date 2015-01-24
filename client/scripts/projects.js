@@ -21,7 +21,7 @@ socket.on('files:list', function(ret){
 });
 
 
-socket.on('project:create', function(ret){
+socket.on('projects:create', function(ret){
 
 	console.log(ret);
 
@@ -42,5 +42,5 @@ function gotoProject(projectName) {
 
 function createProject(projectName, projectPath) {
 
-	socket.emit("project:create", {name:projectName, path:projectPath});
+	socket.emit("projects:create", {name:projectName, path:projectPath});
 }
