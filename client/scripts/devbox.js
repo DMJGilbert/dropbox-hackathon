@@ -2,7 +2,7 @@ var socket = io.connect();
 
 var filePath;
 var cachedContent;
-var supportedFormats = ['js', 'txt', 'html', 'php', 'css'];
+var supportedFormats = ['js', 'txt', 'html', 'php', 'css', 'sql', 'json', 'ini', 'xml'];
 var dmp = new diff_match_patch();
 
 function getPathFromURL(url) {
@@ -194,5 +194,5 @@ var webrtc = new SimpleWebRTC({
 // we have to wait until it's ready
 webrtc.on('readyToCall', function () {
 	// you can name it anything
-	webrtc.joinRoom('dev-box-dropbox-hackathon');
+	webrtc.joinRoom('dev-box-dropbox-hackathon-'+projectID);
 });

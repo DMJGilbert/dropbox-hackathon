@@ -26,15 +26,19 @@ socket.emit("projects:list", {});
 socket.on('projects:list', function(ret){
 	console.log(ret);
 	for ( var i = 0; i < ret.projects.length; i += 1) {
-		$('#projectFolders').append('<div class="item"><i class="fa fa-folder-open"></i><div style="display:inline-block;" class="content"><div id="'+ret.projects[i].name+'" onclick="gotoProject(\''+ret.projects[i].id+'\')" class="header"><span style="cursor:pointer;"> '+ret.projects[i].name+'</span></div></div></div>');
+		$('#projectFolders').append('<div class="item"><i class="fa fa-folder-open"></i><div style="display:inline-block;" class="content"><div id="'+ret.projects[i].name+'" onclick="gotoProject(\''+i+'\')" class="header"><span style="cursor:pointer;"> '+ret.projects[i].name+'</span></div></div></div>');
 	}
 });
 
 
 socket.on('projects:create', function(ret){
-
-	$('#projectFolders').append('<div class="item"><i class="fa fa-folder-open"></i><div style="display:inline-block;" class="content"><div id="'+ret.project.name+'" onclick="gotoProject(\''+ret.id+'\')" class="header"><span style="cursor:pointer;"> '+ret.project.name+'</span></div></div></div>');
+	for ( var i = 0; i < $('#projectFolders').find('span').length; i += 1) {
+		if ($('#projectFolders').find('span')[i].innerHTML != ret.project.name) {
+			$('#projectFolders').append('<div class="item"><i class="fa fa-folder-open"></i><div style="display:inline-block;" class="content"><div id="'+ret.project.name+'" onclick="gotoProject(\''+ret.id+'\')" class="header"><span style="cursor:pointer;"> '+ret.project.name+'</span></div></div></div>');
+		} else {
 			
+		}
+	}
 });
 
 
