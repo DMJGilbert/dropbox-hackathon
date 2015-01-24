@@ -117,7 +117,7 @@ window.onload = function () {
 	setInterval(function () {
 		var editor = ace.edit("editor");
 		var newContent = editor.getValue();
-		if(newContent != cachedContent){
+		if(cachedContent != null && newContent != cachedContent){
 			var diff = dmp.diff_main(cachedContent, newContent, true);
 			var patch_list = dmp.patch_make(cachedContent, newContent, diff);
 			var patch_text = dmp.patch_toText(patch_list);
