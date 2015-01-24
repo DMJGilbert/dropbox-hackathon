@@ -2,7 +2,7 @@ var socket = io.connect();
 
 var filePath;
 var cachedContent;
-var supportedFormats = ['js', 'txt', 'html', 'php', 'css'];
+var supportedFormats = ['js', 'txt', 'html', 'php', 'css', 'sql', 'json', 'ini', 'xml'];
 var dmp = new diff_match_patch();
 
 function getPathFromURL(url) {
@@ -63,6 +63,7 @@ socket.on('files:list', function (ret) {
 });
 
 socket.on('projects:readFile', function (ret) {
+	$('.ace_text-input').removeAttr("disabled");
 	var editor = ace.edit("editor");
 	editor.setValue(ret.content, 1);
 	cachedContent = ret.content;
@@ -70,7 +71,6 @@ socket.on('projects:readFile', function (ret) {
 });
 
 socket.on('projects:editFile', function (ret) {
-	console.log(ret)
 	if (ret.path === filePath) {
 		var editor = ace.edit("editor");
 		var content = editor.getValue();
@@ -93,6 +93,7 @@ socket.on('projects:editFile', function (ret) {
 });
 
 window.onload = function () {
+	$('.ace_text-input').attr('disabled', 'disabled');
 	var editor = ace.edit("editor");
 	editor.setTheme("ace/theme/twilight");
 	var XmlMode = require("ace/mode/xml").Mode;
@@ -193,5 +194,5 @@ var webrtc = new SimpleWebRTC({
 // we have to wait until it's ready
 webrtc.on('readyToCall', function () {
 	// you can name it anything
-	webrtc.joinRoom('dev-box-dropbox-hackathon');
+	webrtc.joinRoom('dev-box-dropbox-hackathon-'+projectID);
 });
