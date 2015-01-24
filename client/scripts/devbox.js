@@ -3,6 +3,7 @@ window.onload = function() {
 	editor.setTheme("ace/theme/twilight");
 	var XmlMode = require("ace/mode/xml").Mode;
 	editor.getSession().setMode(new XmlMode());
+	editor.setShowPrintMargin(false);
 };
 
 function showRightBar() {
