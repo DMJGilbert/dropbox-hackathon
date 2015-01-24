@@ -5,6 +5,10 @@ window.onload = function() {
 	editor.getSession().setMode(new XmlMode());
 };
 
-// $('.left.sidebar').sidebar('toggle');
+function showRightBar() {
+	$('.right.sidebar').sidebar('toggle');
+}
 
-$('.right.sidebar').sidebar('toggle');
+function showLeftBar() {
+	$('.left.sidebar').sidebar('toggle');
+}
