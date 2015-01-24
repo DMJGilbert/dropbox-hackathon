@@ -63,6 +63,7 @@ socket.on('files:list', function (ret) {
 });
 
 socket.on('projects:readFile', function (ret) {
+	$('.ace_text-input').removeAttr("disabled");
 	var editor = ace.edit("editor");
 	editor.setValue(ret.content, 1);
 	cachedContent = ret.content;
@@ -70,7 +71,6 @@ socket.on('projects:readFile', function (ret) {
 });
 
 socket.on('projects:editFile', function (ret) {
-	console.log(ret)
 	if (ret.path === filePath) {
 		var editor = ace.edit("editor");
 		var content = editor.getValue();
@@ -93,6 +93,7 @@ socket.on('projects:editFile', function (ret) {
 });
 
 window.onload = function () {
+	$('.ace_text-input').attr('disabled', 'disabled');
 	var editor = ace.edit("editor");
 	editor.setTheme("ace/theme/twilight");
 	var XmlMode = require("ace/mode/xml").Mode;
