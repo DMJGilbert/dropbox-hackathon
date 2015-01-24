@@ -25,7 +25,6 @@ function openFolderModal() {
 
 function saveFile() {
 	var newFile = $('#fileInput').val();
-	newFile = filePath + newFile;
 	socket.emit("projects:createFile", {
 		id: projectID,
 		path: newFile
@@ -34,7 +33,6 @@ function saveFile() {
 
 function saveFolder() {
 	var newFile = $('#folderInput').val();
-	newFile = filePath + newFile;
 	socket.emit("projects:createDir", {
 		id: projectID,
 		path: newFolder
@@ -51,6 +49,7 @@ socket.emit("projects:files", {
 });
 
 socket.on('projects:files', function (ret) {
+	ret.path
 
 	for (var i = 0; i < ret.stat.contents.length; i += 1) {
 		var fileFormat = ret.stat.contents[i]['path'].split("").reverse().join("");
