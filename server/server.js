@@ -90,4 +90,11 @@ app.io.route("files", {
 	list: _files.list
 });
 
+
+app.io.route("account", {
+	view: function(req){
+		req.io.emit("account:view", req.session.user);
+	}
+});
+
 app.listen(process.env.PORT || port);
