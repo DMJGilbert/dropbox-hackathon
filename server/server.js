@@ -1,6 +1,6 @@
 var http = require('http');
 var path = require('path');
-var port = 8080;
+var port = 80;
 
 var express = require('express.io'),
 	passport = require('passport'),
@@ -38,7 +38,7 @@ passport.deserializeUser(function (obj, done) {
 passport.use(new DropboxOAuth2Strategy({
 		clientID: DROPBOX_APP_KEY,
 		clientSecret: DROPBOX_APP_SECRET,
-		callbackURL: "https://dev-box.herukoapp.com/auth/dropbox/callback"
+		callbackURL: "http://localhost:8080/auth/dropbox/callback"//"https://dev-box.herukoapp.com/auth/dropbox/callback"
 	},
 	function (accessToken, refreshToken, profile, done) {
 		console.log(profile);
