@@ -1,5 +1,6 @@
 'use strict';
 var Dropbox = require('dropbox');
+var dmp = new require('../../min.js');
 
 var projects = [];
 
