@@ -81,7 +81,7 @@ socket.on('projects:editFile', function (ret) {
 
 		console
 
-		if (isNaN(currentPosition.row) && isNaN(currentPosition.column)) {
+		if (!isNaN(currentPosition.row) && !isNaN(currentPosition.column)) {
 			editor.moveCursorTo(currentPosition.row, currentPosition.column);
 		}
 
