@@ -4,15 +4,21 @@
 
 		<link rel="stylesheet" type="text/css" href="./scripts/custom.css">
 		<link rel="stylesheet" type="text/css" href="./lib/Semantic-UI-1.7.3/dist/semantic.min.css">
-
+		<link rel="stylesheet" type="text/css" href="./lib/Font Awesome/css/font-awesome.min.css">
 
 	</head>
 
 	<body>
+		<div class="ui menu">
+  			<a onclick="showLeftBar();" class="active item">
+    				<i class="fa fa-files-o"></i>&nbsp;Project
+  			</a>
 
-		<div onclick="showLeftBar();" class="ui black big launch left attached fixed button">
-  			<i class="content icon"></i>
-  			<span class="text">Menu</span>
+  			<div class="right menu">
+		    		<a onclick="showRightBar();" class="active item">
+	    				<i class="fa fa-video-camera"></i>&nbsp;Chat
+	  			</a>
+		 	 </div>
 		</div>
 
 		<div class="ui left vertical inverted labeled icon sidebar menu">
@@ -28,11 +34,6 @@
 		    		<i class="settings icon"></i>
 		    		Settings
 		 	</a>
-		</div>
-
-		<div onclick="showRightBar();" style="float:right;" class="ui black big launch right attached fixed button">
-  			<i class="content icon"></i>
-  			<span class="text">Menu</span>
 		</div>
 
 		<div class="ui right vertical inverted labeled icon sidebar menu">
