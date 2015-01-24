@@ -15,9 +15,9 @@ socket.on('projects:files', function(ret){
 
 	for ( var i = 0; i < ret.stat.contents.length; i += 1) {
 		if (ret.stat.contents[i]['is_dir']) {
-			$('#projectFolder').append('<div class="item"><i class="fa fa-folder-open"></i><div style="display:inline-block;" class="content"><div id="'+'test'+'" class="header"> '+ret.arr[i]+'</div></div></div>');
+			$('#projectFolder').append('<div class="item"><i class="fa fa-folder-open"></i><div style="display:inline-block;" class="content"><div style="white-space:nowrap;" id="'+'test'+'" class="header">  '+ret.arr[i]+'</div></div></div>');
 		} else {
-			$('#projectFolder').append('<div onclick="loadFile(\''+ret.stat.contents[i]['path']+'\')" class="item"><i class="fa fa-file-o"></i><div style="display:inline-block;" class="content"><div id="'+'test'+'" class="header"> '+ret.arr[i]+'</div></div></div>');
+			$('#projectFolder').append('<div onclick="loadFile(\''+ret.stat.contents[i]['path']+'\')" class="item"><i class="fa fa-file-o"></i><div style="display:inline-block;" class="content"><div style="white-space:nowrap;" id="'+'test'+'" class="header">  '+ret.arr[i]+'</div></div></div>');
 		}
 	}
 	
