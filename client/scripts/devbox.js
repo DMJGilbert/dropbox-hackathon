@@ -2,7 +2,7 @@ var socket = io.connect();
 
 var filePath;
 var cachedContent;
-var supportedFormats = ['js', 'txt', 'html', 'php'];
+var supportedFormats = ['js', 'txt', 'html', 'php', 'css'];
 var dmp = new diff_match_patch();
 
 function getPathFromURL(url) {
@@ -28,11 +28,11 @@ socket.on('projects:files', function (ret) {
 		paths[i] = [ret.stat.path, ret.stat.contents[i]['path']];
 
 		if (ret.stat.contents[i]['is_dir']) {
-			$('#projectFolder').append('<div style="cursor:pointer;" onclick="openFolder(\''+i+'\')" class="item"><i class="fa fa-folder-open"></i><div style="display:inline-block;" class="content"><div style="white-space:nowrap;" id="'+'test'+'" class="header">&nbsp;&nbsp;'+ret.arr[i]+'</div></div></div>');
+			$('#projectFolder').append('<div title="'+ret.arr[i]+'" style="cursor:pointer;" onclick="openFolder(\''+i+'\')" class="item"><i class="fa fa-folder-open"></i><div style="display:inline-block;" class="content"><div style="white-space:nowrap;" id="'+'test'+'" class="header">&nbsp;&nbsp;'+ret.arr[i]+'</div></div></div>');
 		} else if (supportedFormats.indexOf(fileFormat) !== -1) {
-			$('#projectFolder').append('<div style="cursor:pointer;" onclick="loadFile(\''+ret.stat.contents[i]['path']+'\')" class="item"><i class="fa fa-file-code-o"></i><div style="display:inline-block;" class="content"><div style="white-space:nowrap;" id="'+'test'+'" class="header">&nbsp;&nbsp;'+ret.arr[i]+'</div></div></div>');
+			$('#projectFolder').append('<div title="'+ret.arr[i]+'" style="cursor:pointer;" onclick="loadFile(\''+ret.stat.contents[i]['path']+'\')" class="item"><i class="fa fa-file-code-o"></i><div style="display:inline-block;" class="content"><div style="white-space:nowrap;" id="'+'test'+'" class="header">&nbsp;&nbsp;'+ret.arr[i]+'</div></div></div>');
 		} else {
-			$('#projectFolder').append('<div style="cursor:default;" class="item"><i class="fa fa-file-o"></i><div style="display:inline-block;" class="content"><div style="color:rgba(0, 0, 0, 0.25); white-space:nowrap;" class="header">&nbsp;&nbsp;'+ret.arr[i]+'</div></div></div>');
+			$('#projectFolder').append('<div title="'+ret.arr[i]+'" style="cursor:default;" class="item"><i class="fa fa-file-o"></i><div style="display:inline-block;" class="content"><div style="color:rgba(0, 0, 0, 0.25); white-space:nowrap;" class="header">&nbsp;&nbsp;'+ret.arr[i]+'</div></div></div>');
 		}
 	}
 	
@@ -48,11 +48,11 @@ socket.on('files:list', function(ret){
 		paths[i] = [ret.stat.path, ret.stat.contents[i]['path']];
 
 		if (ret.stat.contents[i]['is_dir']) {
-			$('#projectFolder').append('<div style="cursor:pointer;" onclick="openFolder(\''+i+'\')" class="item"><i class="fa fa-folder-open"></i><div style="display:inline-block;" class="content"><div style="white-space:nowrap;" id="'+'test'+'" class="header">&nbsp;&nbsp;'+ret.arr[i]+'</div></div></div>');
+			$('#projectFolder').append('<div title="'+ret.arr[i]+'" style="cursor:pointer;" onclick="openFolder(\''+i+'\')" class="item"><i class="fa fa-folder-open"></i><div style="display:inline-block;" class="content"><div style="white-space:nowrap;" id="'+'test'+'" class="header">&nbsp;&nbsp;'+ret.arr[i]+'</div></div></div>');
 		} else if (supportedFormats.indexOf(fileFormat) !== -1) {
-			$('#projectFolder').append('<div style="cursor:pointer;" onclick="loadFile(\''+ret.stat.contents[i]['path']+'\')" class="item"><i class="fa fa-file-code-o"></i><div style="display:inline-block;" class="content"><div style="white-space:nowrap;" id="'+'test'+'" class="header">&nbsp;&nbsp;'+ret.arr[i]+'</div></div></div>');
+			$('#projectFolder').append('<div title="'+ret.arr[i]+'" style="cursor:pointer;" onclick="loadFile(\''+ret.stat.contents[i]['path']+'\')" class="item"><i class="fa fa-file-code-o"></i><div style="display:inline-block;" class="content"><div style="white-space:nowrap;" id="'+'test'+'" class="header">&nbsp;&nbsp;'+ret.arr[i]+'</div></div></div>');
 		} else {
-			$('#projectFolder').append('<div style="cursor:default;" class="item"><i class="fa fa-file-o"></i><div style="display:inline-block;" class="content"><div style="color:rgba(0, 0, 0, 0.25); white-space:nowrap;" class="header">&nbsp;&nbsp;'+ret.arr[i]+'</div></div></div>');
+			$('#projectFolder').append('<div title="'+ret.arr[i]+'" style="cursor:default;" class="item"><i class="fa fa-file-o"></i><div style="display:inline-block;" class="content"><div style="color:rgba(0, 0, 0, 0.25); white-space:nowrap;" class="header">&nbsp;&nbsp;'+ret.arr[i]+'</div></div></div>');
 		}
 	}
 
@@ -133,10 +133,9 @@ function parentFolder(parentPath) {
 	var currentPath = parentPath.split("/");
 	var newPath = "";
 
-	console.log(parentPath);
 	if (currentPath.length > 2) {
 		for(var i = 1; i < currentPath.length-1; i += 1) {
-			newPath += currentPath[i]+'/';
+			newPath += '/'+currentPath[i];
 		}
 		console.log(newPath);
 		$('#projectFolder').append('<div onclick="parentFolder(\''+newPath+'\')" style="cursor:pointer;" class="item"><div style="display:inline-block;" class="content"><div style="white-space:nowrap;" class="header">../</div></div></div>');
