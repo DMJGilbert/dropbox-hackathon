@@ -151,11 +151,11 @@ $.ajax({
     dataType: "json",
     url: "https://api.xirsys.com/getIceServers",
     data: {
-        ident: "< Your username (not your email) >",
-        secret: "< Your secret API token >",
-        domain: "< www.yourdomain.com >",
+        ident: "maxjmay",
+        secret: "7eb83a28-4b85-43be-b9dc-0967d317c916",
+        domain: "https://dev-box.herokuapp.com/",
         application: "default",
-        room: room,
+        room: 'dev-box-dropbox-hackathon',
         secure: 1
     },
     success: function (data, status) {
