@@ -33,16 +33,22 @@ socket.on('projects:list', function(ret){
 
 socket.on('projects:create', function(ret){
 	
+	var projectsExist = false;
+
 	if ($('#projectFolders').find('span').length != 0) {
 		for ( var i = 0; i < $('#projectFolders').find('span').length; i += 1) {
-			if ($('#projectFolders').find('span')[i].innerHTML.trim() != ret.project.name.trim()) {
-				$('#projectFolders').append('<div class="item"><i class="fa fa-folder-open"></i><div style="display:inline-block;" class="content"><div id="'+ret.project.name+'" onclick="gotoProject(\''+ret.id+'\')" class="header"><span style="cursor:pointer;"> '+ret.project.name+'</span></div></div></div>');
-				$('#errorMessage').hide();
-			} else {
+			if ($('#projectFolders').find('span')[i].innerHTML.trim() == ret.project.name.trim()) {
+				projectExists = true;
 				$('#errorMessage').show();
 				break;
 			}
-		}	
+		}
+
+		if(!projectExists) {
+			$('#projectFolders').append('<div class="item"><i class="fa fa-folder-open"></i><div style="display:inline-block;" class="content"><div id="'+ret.project.name+'" onclick="gotoProject(\''+ret.id+'\')" class="header"><span style="cursor:pointer;"> '+ret.project.name+'</span></div></div></div>');
+			$('#errorMessage').hide();
+		}
+
 	} else {
 		$('#projectFolders').append('<div class="item"><i class="fa fa-folder-open"></i><div style="display:inline-block;" class="content"><div id="'+ret.project.name+'" onclick="gotoProject(\''+ret.id+'\')" class="header"><span style="cursor:pointer;"> '+ret.project.name+'</span></div></div></div>');
 		$('#errorMessage').hide();
