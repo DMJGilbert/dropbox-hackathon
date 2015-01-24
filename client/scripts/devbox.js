@@ -74,7 +74,17 @@ socket.on('projects:editFile', function (ret) {
 		var patches = dmp.patch_fromText(ret.patch);
 		var results = dmp.patch_apply(patches, content);
 		cachedContent = results[0];
+
+		var currentPosition = editor.getCursorPosition();
+
 		editor.setValue(results[0], 1);
+
+		console
+
+		if (!isNaN(currentPosition.row) && !isNaN(currentPosition.column)) {
+			editor.moveCursorTo(currentPosition.row, currentPosition.column);
+		}
+
 	}
 });
 
