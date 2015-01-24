@@ -81,7 +81,7 @@ app.io.route("projects", {
 var _files = require('./routes/files');
 
 app.io.route("files", {
-  list: _projects.list
+  list: _files.list
 });
 
 app.listen(port);

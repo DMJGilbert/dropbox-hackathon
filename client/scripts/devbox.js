@@ -13,3 +13,7 @@ function showRightBar() {
 function showLeftBar() {
 	$('#leftBar').toggle();
 }
+var socket = io.connect();
+socket.on('error:login', function(ret){
+  window.location.href= "/index.html"
+});

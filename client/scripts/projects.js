@@ -1,5 +1,10 @@
 var socket = io.connect();
 
+socket.on('error:login', function(ret){
+  window.location.href= "/index.html"
+});
+
+
 socket.emit("files:list", {});
 
 socket.on('files:list', function(ret){
