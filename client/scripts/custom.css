@@ -24,6 +24,6 @@ body {
 }
 
 #remotesVideos > video {
-	height: 122px;
-	width: 100%;
+	width: 122px;
+	height: auto;
 }
