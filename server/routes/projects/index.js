@@ -46,17 +46,18 @@ exports.files = function (req) {
     var project = projects[req.data.id];
     if (project) {
       var client = new Dropbox.Client({
-        token: project.accessToken
+        token: project.token
       });
 
       client.readdir(project.path + (req.data.path ? "\\" + req.data.path : ""), {}, function (err, arr, stat, statarr) {
         req.io.emit('projects:files', {
           err: err,
-          content: content,
+          arr: arr,
           stat: stat,
           statarr: statarr,
           path: req.data.path
         });
+
       });
     }
   } else {
@@ -69,7 +70,7 @@ exports.readFile = function (req) {
     var project = projects[req.data.id];
     if (project) {
       var client = new Dropbox.Client({
-        token: project.accessToken
+        token: project.token
       });
 
       client.readFile(project.path + (req.data.path ? "\\" + req.data.path : ""), {}, function (err, arr, stat, statarr) {
@@ -92,7 +93,7 @@ exports.createFile = function (req) {
     var project = projects[req.data.id];
     if (project) {
       var client = new Dropbox.Client({
-        token: project.accessToken
+        token: project.token
       });
 
       client.writeFile(project.path + (req.data.path ? "\\" + req.data.path : ""), "", {}, function (err, arr, stat, statarr) {
@@ -115,7 +116,7 @@ exports.createDir = function (req) {
     var project = projects[req.data.id];
     if (project) {
       var client = new Dropbox.Client({
-        token: project.accessToken
+        token: project.token
       });
 
       client.mkdir(project.path + (req.data.path ? "\\" + req.data.path : ""), "", function (err, arr, stat, statarr) {
@@ -138,7 +139,7 @@ exports.delete = function (req) {
     var project = projects[req.data.id];
     if (project) {
       var client = new Dropbox.Client({
-        token: project.accessToken
+        token: project.token
       });
 
       client.remove(project.path + (req.data.path ? "\\" + req.data.path : ""), function (err, arr, stat, statarr) {
