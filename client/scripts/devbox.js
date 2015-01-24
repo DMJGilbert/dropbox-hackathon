@@ -3,6 +3,7 @@ var socket = io.connect();
 var filePath;
 var cachedContent;
 var supportedFormats = ['js', 'txt', 'html', 'php', 'css', 'sql', 'json', 'ini', 'xml'];
+
 var dmp = new diff_match_patch();
 
 $('.ui.modal').modal();
