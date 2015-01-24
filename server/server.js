@@ -73,7 +73,15 @@ app.get('/auth/dropbox/callback',
 var _projects = require('./routes/projects');
 
 app.io.route("projects", {
-  files: _projects.files
+  files: _projects.files,
+  list: _projects.list,
+  create: _projects.create,
+});
+
+var _files = require('./routes/files');
+
+app.io.route("files", {
+  list: _projects.list
 });
 
 app.listen(port);

@@ -1,4 +1,5 @@
 'use strict';
+var Dropbox = require('dropbox');
 
 var projects = [];
 
