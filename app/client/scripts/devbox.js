@@ -20,8 +20,6 @@ socket.emit("projects:files", {
 
 socket.on('projects:files', function (ret) {
 
-	console.log(ret);
-
 	for (var i = 0; i < ret.stat.contents.length; i += 1) {
 		var fileFormat = ret.stat.contents[i]['path'].split("").reverse().join("");
 		fileFormat = fileFormat.substring(0, fileFormat.indexOf('.'));
@@ -41,8 +39,6 @@ socket.on('projects:files', function (ret) {
 });
 
 socket.on('files:list', function(ret){
-
-	console.log(ret);
 
 	for ( var i = 0; i < ret.stat.contents.length; i += 1) {
 		var fileFormat = ret.stat.contents[i]['path'].split("").reverse().join("");
@@ -136,12 +132,14 @@ function parentFolder(parentPath) {
 
 	var currentPath = parentPath.split("/");
 	var newPath = "";
-	if (currentPath.length > 1) {
-		for(var i = 0; i < currentPath.length-1; i += 1) {
-		newPath += currentPath[i]+'/';
+
+	console.log(parentPath);
+	if (currentPath.length > 2) {
+		for(var i = 1; i < currentPath.length-1; i += 1) {
+			newPath += currentPath[i]+'/';
 		}
 
-		$('#projectFolder').append('<div onclick="parentFolder(\''+paths[index][0]+'\')" style="cursor:pointer;" class="item"><div style="display:inline-block;" class="content"><div style="white-space:nowrap;" class="header">../</div></div></div>');
+		$('#projectFolder').append('<div onclick="parentFolder(\''+newPath+'\')" style="cursor:pointer;" class="item"><div style="display:inline-block;" class="content"><div style="white-space:nowrap;" class="header">../</div></div></div>');
 	}
 
 	socket.emit("files:list", {path: parentPath});
