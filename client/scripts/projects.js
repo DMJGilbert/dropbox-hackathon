@@ -58,7 +58,7 @@ function createProject(projectName, projectPath) {
 
 	if ($('#projectFolders').find('span').length != 0) {
 		for ( var i = 0; i < $('#projectFolders').find('span').length; i += 1) {
-			if ($('#projectFolders').find('span')[i].innerHTML.trim() == ret.project.name.trim()) {
+			if ($('#projectFolders').find('span')[i].innerHTML.trim() == projectName.trim()) {
 				projectExists = true;
 				$('#errorMessage').show();
 				break;
