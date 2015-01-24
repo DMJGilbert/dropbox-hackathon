@@ -1,6 +1,6 @@
 var http = require('http');
 var path = require('path');
-var port = 80;
+var port = 8080;
 
 var express = require('express.io'),
 	passport = require('passport'),
