@@ -23,6 +23,18 @@ exports.list = function (req) {
 
 exports.edit = function (req) {
 	if (req.session.user) {
+		var project = projects[req.data.id];
+		if (project) {
+			var client = new Dropbox.Client({
+				token: project.token
+			});
+			client.readFile(req.data.path, {}, function (err, content, stat, statarr) {
+				var patches = dmp.patch_fromText(req.data.patch);
+				var results = dmp.patch_apply(patches, content);
+				client.writeFile(req.data.path, results[0], {}, function (err, arr, stat, statarr) {
+				});
+			});
+		}
 		req.io.broadcast('projects:editFile', req.data);
 	} else {
 		req.io.emit('error:login', {});
