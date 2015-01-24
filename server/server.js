@@ -4,7 +4,7 @@ var port = 80;
 
 var express = require('express.io'),
   passport = require('passport'),
-  DropboxStrategy = require('passport-dropbox').Strategy,
+  DropboxOAuth2Strategy = require('passport-dropbox-oauth2').Strategy,
   Dropbox = require("dropbox");
 
 var DROPBOX_APP_KEY = "aaw7bo9qqrx3lpr"
@@ -35,18 +35,19 @@ passport.deserializeUser(function (obj, done) {
   done(null, obj);
 });
 
-passport.use(new DropboxStrategy({
-    consumerKey: DROPBOX_APP_KEY,
-    consumerSecret: DROPBOX_APP_SECRET,
+passport.use(new DropboxOAuth2Strategy({
+    clientID: DROPBOX_APP_KEY,
+    clientSecret: DROPBOX_APP_SECRET,
     callbackURL: "http://localhost/auth/dropbox/callback"
   },
-  function (token, tokenSecret, profile, done) {
+  function (accessToken, refreshToken, profile, done) {
+    console.log(profile);
     var user = {
       displayName: profile.displayName,
       email: profile.emails[0].value,
       dropboxToken: {
-        'token': token,
-        'secret': tokenSecret
+        'accessToken': accessToken,
+        'refreshToken': refreshToken
       }
     };
     return done(null, user);
@@ -54,24 +55,25 @@ passport.use(new DropboxStrategy({
 ));
 
 app.get('/auth/dropbox',
-  passport.authenticate('dropbox'),
+  passport.authenticate('dropbox-oauth2'),
   function (req, res) {});
 
 app.get('/auth/dropbox/callback',
-  passport.authenticate('dropbox', {
+  passport.authenticate('dropbox-oauth2', {
     failureRedirect: '/index.html'
   }),
   function (req, res) {
     req.io.user = req.user;
-    req.session.user =  req.user;
+    req.session.user = req.user;
     req.session.save();
     res.redirect('/projects.html');
   });
 
 //socket stuff
 var _projects = require('./routes/projects');
+
 app.io.route("projects", {
-  list: _projects.list
+  files: _projects.files
 });
 
 app.listen(port);

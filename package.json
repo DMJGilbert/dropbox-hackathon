@@ -11,6 +11,6 @@
     "express.io": "*",
     "dropbox": "*",
     "passport": "*",
-    "passport-dropbox": "*"
+    "passport-dropbox-oauth2": "*"
   }
 }

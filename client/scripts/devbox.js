@@ -5,8 +5,16 @@ window.onload = function() {
 	editor.getSession().setMode(new XmlMode());
 
   var socket = io.connect();
-  socket.emit("projects:list", {
+
+  socket.on('projects:files', function(ret){
+    console.log(ret);
   });
+
+  socket.emit("projects:files", {
+  });
+
+  socket.emit("projects:files", {
+  path: "Uni"});
 
 };
 
