@@ -38,7 +38,7 @@ passport.deserializeUser(function (obj, done) {
 passport.use(new DropboxOAuth2Strategy({
 		clientID: DROPBOX_APP_KEY,
 		clientSecret: DROPBOX_APP_SECRET,
-		callbackURL: "http://localhost:8080/auth/dropbox/callback"//"https://dev-box.herukoapp.com/auth/dropbox/callback"
+		callbackURL: "https://dev-box.herukoapp.com/auth/dropbox/callback"//"http://localhost:8080/auth/dropbox/callback"//
 	},
 	function (accessToken, refreshToken, profile, done) {
 		console.log(profile);
