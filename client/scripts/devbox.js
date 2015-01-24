@@ -5,12 +5,40 @@ var cachedContent;
 var supportedFormats = ['js', 'txt', 'html', 'php', 'css', 'sql', 'json', 'ini', 'xml'];
 var dmp = new diff_match_patch();
 
+$('.ui.modal').modal();
+
 function getPathFromURL(url) {
 	return url.split("?")[1];
 }
 
 function goBack() {
 	window.location.href = "/projects.html"
+}
+
+function openFileModal() {
+	$('#addFileModal').modal('show');
+}
+
+function openFolderModal() {
+	$('#addFolderModal').modal('show');
+}
+
+function saveFile() {
+	var newFile = $('#fileInput').val();
+	newFile = filePath + newFile;
+	socket.emit("projects:createFile", {
+		id: projectID,
+		path: newFile
+	});
+}
+
+function saveFolder() {
+	var newFile = $('#folderInput').val();
+	newFile = filePath + newFile;
+	socket.emit("projects:createDir", {
+		id: projectID,
+		path: newFolder
+	});
 }
 
 var projectID = getPathFromURL(document.URL);

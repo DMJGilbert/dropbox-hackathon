@@ -10,6 +10,42 @@
 
 	<body>
 
+		<div id="addFolderModal" class="ui modal">
+		  <i class="close icon"></i>
+		  <div class="header">
+		    Add folder
+		  </div>
+		  <div class="content">
+		    	<div class="ui form">
+			  <div class="field">
+			    <label>Folder name <small>(current directory)</small></label>
+			    <input id="fileInput" type="text">
+			  </div>
+			</div>
+		  <div class="actions">
+		    <div class="ui button">Cancel</div>
+		    <div class="ui button">OK</div>
+		  </div>
+		</div>
+
+		<div id="addFileModal" class="ui modal">
+		  <i class="close icon"></i>
+		  <div class="header">
+		    Add file
+		  </div>
+		  <div class="content">
+		    	<div class="ui form">
+			  <div class="field">
+			    <label>File name <small>(current directory)</small></label>
+			    <input id="folderInput" type="text">
+			  </div>
+			</div>
+		  <div class="actions">
+		    <div class="ui button">Cancel</div>
+		    <div class="ui button">OK</div>
+		  </div>
+		</div>
+
 		<div class="ui menu">
   			<a data-transition="scale down" onclick="goBack();" class="item">
     				<i class="fa fa-chevron-left"></i>&nbsp;Back
@@ -27,9 +63,9 @@
 
 		<div class="ui raised segment"  id="leftBar" style="height:90%; width: 12.5%; float: left; background-color: rgb(144, 229, 149); margin-top: 0px !important; margin-left: 20px;">
 			<div class="ui buttons" style="margin: 0 auto;">
-				<div class="ui button"><i class="file icon"></i></div>
+				<div onclick="openFileModal();" class="ui button"><i class="file icon"></i></div>
 			  <div class="or"></div>
-			  <div class="ui button"><i class="folder icon"></i></div>
+			  <div onclick="openFolderModal();" class="ui button"><i class="folder icon"></i></div>
 			</div>
 			<div style="height:100%;white-space: nowrap; overflow-y:scroll; overflow-x:hidden;" id="projectFolder" class="ui list">
 			  	
