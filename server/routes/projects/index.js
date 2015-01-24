@@ -41,7 +41,6 @@ exports.create = function (req) {
 };
 
 exports.files = function (req) {
-  console.log("Test");
   if (req.session.user) {
     var project = projects[req.data.id];
     if (project) {
@@ -73,12 +72,11 @@ exports.readFile = function (req) {
         token: project.token
       });
 
-      client.readFile(project.path + (req.data.path ? "\\" + req.data.path : ""), {}, function (err, arr, stat, statarr) {
+      client.readFile(project.path + (req.data.path ? "\\" + req.data.path : ""), {}, function (err, content, stat, statarr) {
         req.io.emit('projects:readFile', {
           err: err,
-          arr: arr,
+          content: content,
           stat: stat,
-          statarr: statarr,
           path: req.data.path
         });
       });
