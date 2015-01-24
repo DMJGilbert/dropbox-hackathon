@@ -20,6 +20,14 @@ exports.list = function (req) {
   }
 };
 
+exports.edit = function (req) {
+  if (req.session.user) {
+    req.io.broadcast('projects:editFile', req.data);
+  } else {
+    req.io.emit('error:login', {});
+  }
+};
+
 exports.create = function (req) {
   if (req.session.user) {
     var tokens = req.session.user.dropboxToken;

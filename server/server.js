@@ -79,7 +79,8 @@ app.io.route("projects", {
   readFile: _projects.readFile,
   createFile: _projects.create,
   createDir: _projects.createDir,
-  delete: _projects.delete
+  delete: _projects.delete,
+  editFile: _projects.edit
 });
 
 var _files = require('./routes/files');
