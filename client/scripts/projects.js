@@ -23,8 +23,6 @@ socket.on('files:list', function(ret){
 
 socket.on('projects:create', function(ret){
 
-	console.log(ret);
-
 	$('#projectFolders').append('<div class="item"><i class="fa fa-folder-open"></i><div style="display:inline-block;" class="content"><div id="'+ret.project.name+'" onclick="gotoProject(\''+ret.id+'\')" class="header"><span style="cursor:pointer;"> '+ret.project.name+'</span></div></div></div>');
 			
 });
