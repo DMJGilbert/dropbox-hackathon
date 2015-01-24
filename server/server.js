@@ -44,16 +44,6 @@ passport.use(new DropboxStrategy({
   }
 ));
 
-app.get('/account', ensureAuthenticated, function(req, res){
-  res.render('account', {
-    user: req.user
-  });
-});
-
-app.get('/login', function(req, res){
-  res.render('login', { user: req.user });
-});
-
 app.get('/auth/dropbox',
   passport.authenticate('dropbox'),
   function(req, res){
@@ -62,13 +52,14 @@ app.get('/auth/dropbox',
 app.get('/auth/dropbox/callback',
   passport.authenticate('dropbox', { failureRedirect: '/login' }),
   function(req, res) {
-    console.log(req);
-    res.redirect('/index.html');
+    res.redirect('/projects.html');
   });
 
 app.listen(port);
 
 function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
+  if (req.isAuthenticated()) {
+    return next();
+  }
   res.redirect('/login')
 }
