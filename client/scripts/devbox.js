@@ -9,6 +9,10 @@ function getPathFromURL(url) {
 	return url.split("?")[1];
 }
 
+function goBack() {
+	window.location.href = "/projects.html"
+}
+
 var projectID = getPathFromURL(document.URL);
 
 var paths = [];
