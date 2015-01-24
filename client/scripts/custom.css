@@ -17,3 +17,8 @@ body {
 .ui.menu {
 	background: #90E595 !important;
 }
+
+.ace_gutter-layer {
+	background-color: rgb(144, 229, 149);
+	color: black;
+}
