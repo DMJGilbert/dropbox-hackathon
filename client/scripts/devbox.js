@@ -103,16 +103,16 @@ window.onload = function () {
 };
 
 function showRightBar() {
-	$('#videoBar').toggle();
+	$('#rightBar').toggle();
 }
 
 function showLeftBar() {
 	$('#leftBar').toggle();
 }
 var socket = io.connect();
-socket.on('error:login', function (ret) {
-	window.location.href = "/index.html"
-});
+// socket.on('error:login', function (ret) {
+// 	window.location.href = "/index.html"
+// });
 
 function loadFile(filePath) {
 
@@ -143,3 +143,18 @@ function parentFolder(parentPath) {
 
 	socket.emit("files:list", {path: parentPath});
 }
+
+var webrtc = new SimpleWebRTC({
+	// the id/element dom element that will hold "our" video
+	localVideoEl: 'localVideo',
+	// the id/element dom element that will hold remote videos
+	remoteVideosEl: 'remotesVideos',
+	// immediately ask for camera access
+	autoRequestMedia: true
+});
+
+// we have to wait until it's ready
+webrtc.on('readyToCall', function () {
+	// you can name it anything
+	webrtc.joinRoom('dev-box-dropbox-hackathon');
+});
