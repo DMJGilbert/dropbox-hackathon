@@ -4,11 +4,14 @@ function getPathFromURL(url) {
 	return url.split("?")[1];
 }
 
-var projectName = getPathFromURL(document.URL);
+var projectID = getPathFromURL(document.URL);
 
-socket.emit("files:list", {path: "Uni"});
+projectID = projectID.replace("project=", "");
+socket.emit("projects:files", {id: projectID});
 
-socket.on('files:list', function(ret){
+socket.on('projects:files', function(ret){
+
+	console.log(ret);
 
 	for ( var i = 0; i < ret.stat.contents.length; i += 1) {
 		if (ret.stat.contents[i]['is_dir'] ) {

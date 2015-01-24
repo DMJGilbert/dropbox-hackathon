@@ -25,7 +25,7 @@ socket.on('projects:create', function(ret){
 
 	console.log(ret);
 
-	$('#projectFolders').append('<div class="item"><i class="fa fa-folder-open"></i><div style="display:inline-block;" class="content"><div id="'+ret.stat.contents[i]['path'].substring(1).replace(/\s/g, '')+'" onclick="gotoProject(\''+encodeURI(ret.stat.contents[i]['path'])+'\')" class="header"> '+ret.arr[i]+'</div></div></div>');
+	$('#projectFolders').append('<div class="item"><i class="fa fa-folder-open"></i><div style="display:inline-block;" class="content"><div id="'+ret.project.name+'" onclick="gotoProject(\''+ret.id+'\')" class="header"> '+ret.project.name+'</div></div></div>');
 			
 });
 
@@ -36,7 +36,11 @@ function getPath(folderPath) {
 
 }
 
-function gotoProject(projectName) {
+function gotoProject(projectID) {
+
+	console.log('/devbox.html?project='+projectID);
+
+	window.location = '/devbox.html?project='+projectID;
 
 }
 
