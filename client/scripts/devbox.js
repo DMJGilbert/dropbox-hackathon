@@ -79,7 +79,11 @@ socket.on('projects:editFile', function (ret) {
 
 		editor.setValue(results[0], 1);
 
-		editor.moveCursorTo(currentPosition);
+		console
+
+		if (isNaN(currentPosition.row) && isNaN(currentPosition.column)) {
+			editor.moveCursorTo(currentPosition.row, currentPosition.column);
+		}
 
 	}
 });
