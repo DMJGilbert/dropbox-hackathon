@@ -1,5 +1,11 @@
 var socket = io.connect();
 
+function getPathFromURL(url) {
+	return url.split("?")[1];
+}
+
+var projectName = getPathFromURL(document.URL);
+
 socket.emit("files:list", {path: "Uni"});
 
 socket.on('files:list', function(ret){
