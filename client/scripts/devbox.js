@@ -75,11 +75,11 @@ socket.on('projects:editFile', function (ret) {
 		var results = dmp.patch_apply(patches, content);
 		cachedContent = results[0];
 
-		var currentPosition = Editor.getCursorPosition();
+		var currentPosition = editor.getCursorPosition();
 
 		editor.setValue(results[0], 1);
 
-		Editor.moveCursorTo(currentPosition);
+		editor.moveCursorTo(currentPosition);
 
 	}
 });
