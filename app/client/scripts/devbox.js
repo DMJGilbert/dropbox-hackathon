@@ -138,7 +138,7 @@ function parentFolder(parentPath) {
 		for(var i = 1; i < currentPath.length-1; i += 1) {
 			newPath += currentPath[i]+'/';
 		}
-
+		console.log(newPath);
 		$('#projectFolder').append('<div onclick="parentFolder(\''+newPath+'\')" style="cursor:pointer;" class="item"><div style="display:inline-block;" class="content"><div style="white-space:nowrap;" class="header">../</div></div></div>');
 	}
 
