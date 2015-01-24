@@ -48,7 +48,7 @@ exports.files = function (req) {
         token: project.token
       });
 
-      client.readdir(project.path + (req.data.path ? "\\" + req.data.path : ""), {}, function (err, arr, stat, statarr) {
+      client.readdir(project.path, {}, function (err, arr, stat, statarr) {
         req.io.emit('projects:files', {
           err: err,
           arr: arr,
@@ -72,7 +72,7 @@ exports.readFile = function (req) {
         token: project.token
       });
 
-      client.readFile(project.path + (req.data.path ? "\\" + req.data.path : ""), {}, function (err, content, stat, statarr) {
+      client.readFile(req.data.path, {}, function (err, content, stat, statarr) {
         req.io.emit('projects:readFile', {
           err: err,
           content: content,
@@ -94,7 +94,7 @@ exports.createFile = function (req) {
         token: project.token
       });
 
-      client.writeFile(project.path + (req.data.path ? "\\" + req.data.path : ""), "", {}, function (err, arr, stat, statarr) {
+      client.writeFile(req.data.path, "", {}, function (err, arr, stat, statarr) {
         req.io.emit('projects:createFile', {
           err: err,
           arr: arr,
@@ -117,7 +117,7 @@ exports.createDir = function (req) {
         token: project.token
       });
 
-      client.mkdir(project.path + (req.data.path ? "\\" + req.data.path : ""), "", function (err, arr, stat, statarr) {
+      client.mkdir(req.data.path, "", function (err, arr, stat, statarr) {
         req.io.emit('projects:createDir', {
           err: err,
           arr: arr,
@@ -140,7 +140,7 @@ exports.delete = function (req) {
         token: project.token
       });
 
-      client.remove(project.path + (req.data.path ? "\\" + req.data.path : ""), function (err, arr, stat, statarr) {
+      client.remove(req.data.path, function (err, arr, stat, statarr) {
         req.io.emit('projects:delete', {
           err: err,
           arr: arr,
