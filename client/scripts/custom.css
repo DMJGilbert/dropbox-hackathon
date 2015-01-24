@@ -22,3 +22,8 @@ body {
 	background-color: rgb(144, 229, 149);
 	color: black;
 }
+
+#remotesVideos > video {
+	height: 122px;
+	width: 100%;
+}
