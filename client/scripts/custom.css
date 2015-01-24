@@ -26,4 +26,5 @@ body {
 #remotesVideos > video {
 	width: 122px;
 	height: auto;
+	padding-top: 15px;
 }
