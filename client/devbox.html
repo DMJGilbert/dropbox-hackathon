@@ -1,66 +1,69 @@
 <html>
 
-	<head>
+<head>
 
-		<link rel="stylesheet" type="text/css" href="./scripts/custom.css">
-		<link rel="stylesheet" type="text/css" href="./lib/Semantic-UI-1.7.3/dist/semantic.min.css">
-		<link rel="stylesheet" type="text/css" href="./lib/Font Awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="./scripts/custom.css">
+	<link rel="stylesheet" type="text/css" href="./lib/Semantic-UI-1.7.3/dist/semantic.min.css">
+	<link rel="stylesheet" type="text/css" href="./lib/Font Awesome/css/font-awesome.min.css">
 
-	</head>
+</head>
 
-	<body>
+<body>
 
-		<div class="ui menu">
-  			<a data-transition="scale down" onclick="goBack();" class="item">
-    				<i class="fa fa-chevron-left"></i>&nbsp;Back
-  			</a>
-  			<a data-transition="scale down" onclick="showLeftBar();" class="item">
-    				<i class="fa fa-files-o"></i>&nbsp;Project
-  			</a>
+	<div class="ui menu">
+		<a data-transition="scale down" onclick="goBack();" class="item">
+			<i class="fa fa-chevron-left"></i>&nbsp;Back
+		</a>
+		<a data-transition="scale down" onclick="showLeftBar();" class="item">
+			<i class="fa fa-files-o"></i>&nbsp;Project
+		</a>
 
-  			<div  class="right menu">
-		    		<a data-transition="scale down" onclick="showRightBar();" class="item">
-	    				<i class="fa fa-video-camera"></i>&nbsp;Chat
-	  			</a>
-		 	 </div>
+		<div class="right menu">
+			<a data-transition="scale down" onclick="showRightBar();" class="item">
+				<i class="fa fa-video-camera"></i>&nbsp;Chat
+			</a>
 		</div>
+	</div>
 
-		<div class="ui raised segment"  id="leftBar" style="height:90%; width: 12.5%; float: left; background-color: rgb(144, 229, 149); margin-top: 0px !important; margin-left: 20px;">
-			<div class="ui buttons" style="margin: 0 auto;">
-				<div class="ui button"><i class="file icon"></i></div>
-			  <div class="or"></div>
-			  <div class="ui button"><i class="folder icon"></i></div>
+	<div class="ui raised segment" id="leftBar" style="height:90%; width: 12.5%; float: left; background-color: rgb(144, 229, 149); margin-top: 0px !important; margin-left: 20px;">
+		<div class="ui buttons" style="margin: 0 auto;">
+			<div class="ui button"><i class="file icon"></i>
 			</div>
-			<div style="height:100%;white-space: nowrap; overflow-y:scroll; overflow-x:hidden;" id="projectFolder" class="ui list">
-			  	
+			<div class="or"></div>
+			<div class="ui button"><i class="folder icon"></i>
 			</div>
 		</div>
+		<div style="max-height:95%;white-space: nowrap; overflow-y:auto; overflow-x:hidden;" id="projectFolder" class="ui list">
 
-		<div style="width:70%; margin-top:0px !important; height:90%;" class="ui raised segment" style="text-align: center;">
-			<div style="position:relative; height: 100%; " >
-				<div style="background-color: #FFFFFF; color: #000000;" id="editor"></div>
+		</div>
+	</div>
 
-				<div style="height:100%; width: 150px; float: right;">
-					
-				</div>
+	<div style="width:70%; margin-top:0px !important; height:90%;" class="ui raised segment" style="text-align: center;">
+		<div style="position:relative; height: 100%; ">
+			<div style="background-color: #FFFFFF; color: #000000;" id="editor"></div>
+
+			<div style="height:100%; width: 150px; float: right;">
+
 			</div>
 		</div>
+	</div>
 
-		<div class="ui raised segment"  id="rightBar" style="height: 90%;width: 12.5%; background-color: rgb(144, 229, 149); margin-top: 0px !important; position: absolute; top: 50px; right: 19px;">
-			<video style="width:122px;height:auto;" id="localVideo"></video>
-        			<div id="remotesVideos"></div>	
-		</div>
+	<div class="ui raised segment" id="rightBar" style="height: 90%;width: 12.5%; background-color: rgb(144, 229, 149); margin-top: 0px !important; position: absolute; top: 50px; right: 19px;">
+		<video style="width:100%;height:auto;" id="localVideo"></video>
+		<div id="remotesVideos"></div>
+	</div>
 
-		
 
-		<script src="./lib/SimpleWebRTC-master/latest.js"></script> 
-		<script type="text/javascript" src="/socket.io/socket.io.js"></script>
-		<script src="./lib/jQuery/jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="./lib/Semantic-UI-1.7.3/dist/semantic.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="./lib/ace-builds-master/src-min/ace.js" type="text/javascript" charset="utf-8"></script>
-		<!--<script src="./lib/ace-builds-master/src-min/theme-twilight.js" type="text/javascript" charset="utf-8"></script>-->
-		<script src="./lib/ace-builds-master/src-min/mode-xml.js" type="text/javascript" charset="utf-8"></script>
-		<script src="./lib/diff-match-patch/min.js"></script>
-		<script src="./scripts/devbox.js"></script>
-	</body>
+
+	<script src="./lib/SimpleWebRTC-master/latest.js"></script>
+	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+	<script src="./lib/jQuery/jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="./lib/Semantic-UI-1.7.3/dist/semantic.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="./lib/ace-builds-master/src-min/ace.js" type="text/javascript" charset="utf-8"></script>
+	<!--<script src="./lib/ace-builds-master/src-min/theme-twilight.js" type="text/javascript" charset="utf-8"></script>-->
+	<script src="./lib/ace-builds-master/src-min/mode-xml.js" type="text/javascript" charset="utf-8"></script>
+	<script src="./lib/diff-match-patch/min.js"></script>
+	<script src="./scripts/devbox.js"></script>
+</body>
+
 </html>
