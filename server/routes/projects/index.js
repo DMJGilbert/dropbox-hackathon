@@ -9,7 +9,6 @@ exports.list = function (req) {
 	if (req.session.user) {
 		var retProjects = [];
 		for (var i = 0; i < projects.length; i++) {
-			console.log(project[i]);
 			var project = projects[i];
 			if (project.users.indexOf(req.session.user.id) != -1) {
 				retProjects.push(project);
