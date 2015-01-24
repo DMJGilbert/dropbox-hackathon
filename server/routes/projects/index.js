@@ -1,6 +1,7 @@
 'use strict';
 var Dropbox = require('dropbox');
-var dmp = new require('../../min.js');
+require('../../min.js');
+var dmp = new diff_match_patch();
 
 var projects = [];
 
@@ -33,9 +34,9 @@ exports.edit = function (req) {
 				var patches = dmp.patch_fromText(req.data.patch);
 				var results = dmp.patch_apply(patches, content);
 				client.writeFile(req.data.path, results[0], {}, function (err, arr, stat, statarr) {
-					req.io.broadcast('projects:editFile', req.data);
 				});
 			});
+			req.io.broadcast('projects:editFile', req.data);
 		}
 	} else {
 		req.io.emit('error:login', {});
