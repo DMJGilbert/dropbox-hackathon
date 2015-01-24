@@ -74,4 +74,6 @@ function createProject(projectName, projectPath) {
 		socket.emit("projects:create", {name:decodeURI(projectName), path:decodeURI(projectPath)});
 		$('#errorMessage').hide();
 	}
+
+	$('#sharedFolders').find('.circular.ui.mini.icon.button').remove();
 }
