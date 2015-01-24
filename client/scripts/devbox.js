@@ -19,9 +19,9 @@ window.onload = function() {
 };
 
 function showRightBar() {
-	$('.right.sidebar').sidebar('toggle');
+	$('#leftBar').toggle();
 }
 
 function showLeftBar() {
-	$('.left.sidebar').sidebar('toggle');
+	$('#videoBar').toggle();
 }
